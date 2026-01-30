@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizational Financial Management - Justuju</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --highlight: #e8f4f8;
+        }
+        
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--text-color);
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: none;
+            margin-bottom: 1em;
+        }
+        
+        .reveal h1 {
+            font-size: 2.2em;
+            line-height: 1.2;
+        }
+        
+        .reveal h2 {
+            font-size: 1.6em;
+            line-height: 1.3;
+        }
+        
+        .reveal h3 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 1em;
+        }
+        
+        .reveal p, .reveal li {
+            line-height: 1.6;
+            margin-bottom: 0.8em;
+        }
+        
+        .reveal ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .reveal li {
+            margin-bottom: 0.6em;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        
+        .reveal li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .reveal strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .reveal em {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .reveal .slides section {
+            text-align: left;
+            padding: 2em;
+        }
+        
+        .reveal .title-slide {
+            text-align: center;
+        }
+        
+        .reveal .subtitle {
+            font-size: 0.7em;
+            color: #666;
+            font-weight: 300;
+            margin-top: -0.5em;
+        }
+        
+        .reveal .highlight-box {
+            background: var(--highlight);
+            padding: 1.5em;
+            border-radius: 8px;
+            margin: 1em 0;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .reveal .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            margin-top: 1em;
+        }
+        
+        .reveal .example-box {
+            background: var(--light-bg);
+            padding: 1em;
+            border-radius: 6px;
+            margin: 0.5em 0;
+            font-size: 0.85em;
+        }
+        
+        .reveal .activity {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1em;
+            margin: 1em 0;
+            border-radius: 4px;
+        }
+        
+        .reveal .activity:before {
+            content: "✋ ACTIVITY";
+            font-weight: 700;
+            color: #856404;
+            display: block;
+            margin-bottom: 0.5em;
+            font-size: 0.7em;
+        }
+        
+        .reveal .question {
+            font-size: 0.9em;
+            font-style: italic;
+            color: #555;
+            margin: 1em 0;
+        }
+        
+        .reveal .small-text {
+            font-size: 0.75em;
+            color: #666;
+        }
+        
+        .reveal section[data-background-color] {
+            color: white;
+        }
+        
+        .reveal section[data-background-color] h1,
+        .reveal section[data-background-color] h2 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title Slide -->
+            <section class="title-slide" data-background-color="#2c3e50">
+                <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQoSVvB7v_01bPwwOVzvJDMZqUlD0lSH3OZt2RV4i4HbSZ5VAkxuvZgZ05nUnCJyIk5pbDqrc6mJn_VNBTenVnr0qBg8hKNu9bNauu5qBFdcgdBVMF2KFzKD3lz3uHwN_aQWb1_pULsnysJdZboIJCRjwj4N-IAIXcAST8glewxEW0egJdMVpSf=w16383" 
+                     alt="Justuju Logo" 
+                     style="max-width: 250px; margin-bottom: 2em; filter: brightness(0) invert(1);">
+                <h1>Understanding Money in Organizations</h1>
+                <p class="subtitle">Building Financial Literacy Together at Justuju</p>
+            </section>
+
+            <!-- Part 1: Money Basics -->
+            <section>
+                <h2>Part 1: Money Basics</h2>
+                <p class="subtitle">Let's start with what we all know</p>
+            </section>
+
+            <section>
+                <h2>Your Money</h2>
+                <ul>
+                    <li><strong>Income</strong>: Money coming in (salary, gifts)</li>
+                    <li><strong>Expenses</strong>: Money going out (rent, food, sending home)</li>
+                    <li><strong>Savings</strong>: What's left over</li>
+                </ul>
+                <p class="question" style="margin-top: 2em;">Simple enough, right?</p>
+            </section>
+
+            <section>
+                <h2>What if you need more money?</h2>
+                <div class="two-column">
+                    <div>
+                        <h3>When you need more than you have</h3>
+                        <ul style="font-size: 0.85em;">
+                            <li>Borrow from a friend</li>
+                            <li>Take a loan from bank</li>
+                            <li>Ask family for help</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>When you have extra</h3>
+                        <ul style="font-size: 0.85em;">
+                            <li>Save it</li>
+                            <li>Invest it</li>
+                            <li>Spend on something important to you</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 2: Organization Money -->
+            <section>
+                <h2>Part 2: Organization Money</h2>
+                <p class="subtitle">Same principles, different scale</p>
+            </section>
+
+            <section>
+                <h2>Organizations Also Have Money</h2>
+                <ul>
+                    <li><strong>Income</strong>: Payment from clients, grants</li>
+                    <li><strong>Expenses</strong>: Salaries, rent, internet, equipment</li>
+                    <li><strong>Surplus</strong>: What's left after expenses</li>
+                </ul>
+                <div class="highlight-box" style="margin-top: 1.5em;">
+                    <strong>Budget</strong> = Planning what you'll earn and what you'll spend
+                </div>
+            </section>
+
+            <section>
+                <h2>Same Questions Apply</h2>
+                <div class="question" style="font-size: 1.1em;">
+                    What happens when the organization needs more money than it has?
+                </div>
+                <div class="question" style="font-size: 1.1em; margin-top: 1em;">
+                    What happens when there's surplus money?
+                </div>
+            </section>
+
+            <!-- Part 3: Loan vs Investment -->
+            <section>
+                <h2>Part 3: Getting Money</h2>
+                <p class="subtitle">Two main ways organizations get money</p>
+            </section>
+
+            <section>
+                <h2>Option 1: Loan</h2>
+                <div class="highlight-box">
+                    <p><strong>What it is:</strong> Borrowing money that you must return</p>
+                </div>
+                <ul style="margin-top: 1em;">
+                    <li>Must pay back the money (usually with interest)</li>
+                    <li>The lender has <strong>no say</strong> in how you run things</li>
+                    <li>After you pay back, all surplus is <strong>yours</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Option 2: Investment</h2>
+                <div class="highlight-box">
+                    <p><strong>What it is:</strong> Getting money from someone who becomes a part-owner</p>
+                </div>
+                <ul style="margin-top: 1em;">
+                    <li>Don't have to pay back</li>
+                    <li>Investor gets a <strong>share of profits</strong></li>
+                    <li>Investor may have a <strong>say in decisions</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Simple Example</h2>
+                <div class="example-box">
+                    <p><strong>Shanti wants to start a pakoda stall. She needs ₹50,000.</strong></p>
+                </div>
+                <div class="two-column" style="margin-top: 1em; font-size: 0.85em;">
+                    <div>
+                        <h3>If she takes a loan</h3>
+                        <ul>
+                            <li>Must return ₹50,000 + interest</li>
+                            <li>All profit after that is hers</li>
+                            <li>She makes all decisions</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>If she gets investment</h3>
+                        <ul>
+                            <li>Doesn't return the ₹50,000</li>
+                            <li>Shares profit with investor</li>
+                            <li>Investor may help with decisions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>What About Surplus/Profit?</h2>
+                <div class="highlight-box">
+                    <p><strong>With a Loan:</strong> Pay back the loan first, then all surplus belongs to the organization</p>
+                </div>
+                <div class="highlight-box" style="margin-top: 1em;">
+                    <p><strong>With Investment:</strong> Surplus/profit is shared between the organization and investors</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="activity">
+                    <p style="font-size: 1.1em;"><strong>Which sounds better for Justuju's cooperative goal?</strong> </p>
+                </div>
+            </section>
+
+            <!-- Part 4: Justuju's Reality -->
+            <section>
+                <h2>Part 4: Justuju's Reality</h2>
+                <p class="subtitle">Where we are right now</p>
+            </section>
+
+            <section>
+                <h2>The Current Situation</h2>
+                <ul>
+                    <li><strong>Rook N Roll Technologies</strong> is putting money into Justuju</li>
+                    <li>We haven't decided: Is this a <em>loan</em> or an <em>investment</em>?</li>
+                    <li>This is an important choice we need to make <strong>together</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Why Does This Matter?</h2>
+                <ul>
+                    <li>Affects <strong>who owns</strong> Justuju in the future</li>
+                    <li>Determines how <strong>surplus/profit is shared</strong></li>
+                    <li>Impacts the path to becoming a <strong>true cooperative</strong>(if we all want to go via that path)</li>
+                    <li>Influences <strong>decision-making power</strong></li>
+                </ul>
+                <p class="question" style="margin-top: 2em;">This is about YOUR future, so you should understand and decide.</p>
+            </section>
+
+            <!-- Part 5: Making the Choice -->
+            <section>
+                <h2>Part 5: Making the Choice</h2>
+                <p class="subtitle">What each option means for us</p>
+            </section>
+
+            <section>
+                <h2>If It's a Loan</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li>Justuju must pay back the money to Rook N Roll</li>
+                        <li>All surplus after repayment belongs to the <strong>team</strong></li>
+                        <li><strong>You</strong> own and control Justuju</li>
+                        <li>Clear path to cooperative ownership</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>If It's an Investment</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li>Rook N Roll <strong>owns part (or whole?)</strong> of Justuju</li>
+                        <li>Surplus/profits are <strong>shared</strong> with Rook N Roll</li>
+                        <li>May have input in major decisions</li>
+                        <li>Need to negotiate transition to cooperative</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Part 6: How We Make Decisions -->
+            <section>
+                <h2>Part 6: How We Make Financial Decisions</h2>
+                <p class="subtitle">You've already been part of this</p>
+            </section>
+
+            <section>
+                <h2>Our Core Principle</h2>
+                <div class="highlight-box" style="font-size: 0.95em;">
+                    <p style="font-size: 1.1em; margin-bottom: 0.5em;"><strong>Be frugal, but invest in fundamentals and learning</strong></p>
+                    <p class="small-text">Frugal doesn't mean cheap - it means thoughtful about where money goes</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Questions We Ask Before Spending</h2>
+                <ul>
+                    <li>What's the <strong>cheapest option</strong> that doesn't compromise what we need?</li>
+                    <li>Does it significantly <strong>improve productivity</strong> or health?</li>
+                    <li>Can we get the same thing <strong>cheaper elsewhere</strong>?</li>
+                    <li>If we <strong>compromise on quality</strong>, how much and does it matter?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Some Real Decisions WE Made</h2>
+                <p class="subtitle">You've been part of shaping Justuju's finances</p>
+            </section>
+
+            <section>
+                <h2>Equal Salaries</h2>
+                <div class="example-box">
+                    <p><strong>Decision:</strong> Everyone gets the same salary</p>
+                    <p><strong>Why:</strong> We discussed and decided together - fairness and equality matter to us</p>
+                    <p><strong>Impact:</strong> Sets foundation for cooperative values</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Health Insurance</h2>
+                <div class="example-box">
+                    <p><strong>Decision:</strong> Provide health insurance even before steady income</p>
+                    <p><strong>Why:</strong> People's health is a fundamental - if people aren't healthy, how can they work?</p>
+                    <p><strong>Impact:</strong> Investment in people, not just cost</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Interview Compensation</h2>
+                <div class="example-box">
+                    <p><strong>Decision:</strong> Pay people who come for interviews (Ndipa's contribution)</p>
+                    <p><strong>Why:</strong> Respect people's time and effort</p>
+                    <p><strong>Impact:</strong> Shows our values even in hiring</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Fruits & Vegetables</h2>
+                <div class="example-box">
+                    <p><strong>Decision:</strong> Provide fruits and vegetables at office</p>
+                    <p><strong>Why:</strong> Investment in health and wellbeing, keeps people mentally and physically healthy</p>
+                    <p><strong>Impact:</strong> Long-term productivity over short-term savings</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Power & Internet Backup</h2>
+                <div class="example-box">
+                    <p><strong>Decision:</strong> Invest in UPS and backup router</p>
+                    <p><strong>Why:</strong> Constant interruptions during meetings were affecting productivity</p>
+                    <p><strong>Impact:</strong> Smooth work matters more than the one-time cost</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Video Content Decisions</h2>
+                <div class="example-box">
+                    <p><strong>For experiments:</strong> Low investment, basic quality - we're testing, not polishing</p>
+                    <p><strong>For users:</strong> High investment in design and quality - first impressions matter, learning experience matters</p>
+                    <p><strong>Why:</strong> Different contexts need different levels of investment</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>This is How WE Do It</h2>
+                <ul>
+                    <li>These weren't completely top-down decisions</li>
+                    <li>You contributed to these choices</li>
+                    <li>We've been building this together</li>
+                </ul>
+                <p class="highlight-box" style="margin-top: 1.5em;">
+                    Going forward, you'll own these decisions
+                </p>
+            </section>
+
+            <!-- Closing -->
+            <section class="title-slide" data-background-color="#2c3e50">
+                <img src="https://lh3.googleusercontent.com/sitesv/APaQ0SQoSVvB7v_01bPwwOVzvJDMZqUlD0lSH3OZt2RV4i4HbSZ5VAkxuvZgZ05nUnCJyIk5pbDqrc6mJn_VNBTenVnr0qBg8hKNu9bNauu5qBFdcgdBVMF2KFzKD3lz3uHwN_aQWb1_pULsnysJdZboIJCRjwj4N-IAIXcAST8glewxEW0egJdMVpSf=w16383" 
+                     alt="Justuju Logo" 
+                     style="max-width: 200px; margin-bottom: 1.5em; filter: brightness(0) invert(1);">
+                <h2>Questions?</h2>
+                <p class="subtitle" style="margin-top: 2em;">Let's discuss anything that's unclear</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            slideNumber: true,
+            controls: true,
+            progress: true,
+            center: false,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+        });
+    </script>
+</body>
+</html>
