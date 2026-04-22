@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How We Organize Work - Justuju</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #272426;
+            --accent-color: #c46c34;
+            --accent-dark: #a0561d;
+            --accent-light: #f0d5c0;
+            --text-color: #333;
+            --light-bg: #faf8f6;
+            --highlight: #fdf3ec;
+        }
+
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            font-size: 30px;
+            font-weight: 400;
+            color: var(--text-color);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: none;
+            margin-bottom: 0.8em;
+        }
+
+        .reveal h1 { font-size: 2.2em; line-height: 1.2; }
+        .reveal h2 { font-size: 1.5em; line-height: 1.3; }
+        .reveal h3 { font-size: 1.1em; font-weight: 600; margin-top: 0.8em; color: var(--accent-dark); }
+
+        .reveal p, .reveal li { line-height: 1.6; margin-bottom: 0.6em; }
+
+        .reveal ul { list-style: none; padding-left: 0; }
+        .reveal li {
+            margin-bottom: 0.5em;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        .reveal li:before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .reveal strong { color: var(--primary-color); font-weight: 600; }
+        .reveal em { color: var(--accent-color); font-style: italic; }
+
+        .reveal .slides section { text-align: left; padding: 1.5em 2em; }
+        .reveal .title-slide { text-align: center; }
+
+        .reveal .subtitle {
+            font-size: 0.7em;
+            color: #888;
+            font-weight: 300;
+            margin-top: -0.3em;
+        }
+
+        .reveal .highlight-box {
+            background: var(--highlight);
+            padding: 1.2em 1.5em;
+            border-radius: 8px;
+            margin: 0.8em 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .reveal .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5em;
+            margin-top: 0.8em;
+        }
+
+        .reveal .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.2em;
+            margin-top: 0.8em;
+        }
+
+        .reveal .concept-card {
+            background: var(--light-bg);
+            padding: 1.2em;
+            border-radius: 8px;
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .reveal .concept-card h3 { margin-top: 0; }
+
+        .reveal .flow-diagram {
+            font-family: 'Inter', monospace;
+            font-size: 0.7em;
+            line-height: 1.8;
+            background: var(--primary-color);
+            color: #e0dcd8;
+            padding: 1.5em 2em;
+            border-radius: 8px;
+            margin: 0.8em 0;
+        }
+        .reveal .flow-diagram .label { color: #888; }
+        .reveal .flow-diagram .branch { color: var(--accent-light); }
+        .reveal .flow-diagram .initiative { color: #fff; font-weight: 600; }
+        .reveal .flow-diagram .function { color: var(--accent-color); }
+        .reveal .flow-diagram .arrow { color: #666; }
+
+        .reveal .role-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+            margin-top: 0.5em;
+        }
+
+        .reveal .role-card {
+            background: var(--light-bg);
+            padding: 1em;
+            border-radius: 6px;
+            font-size: 0.85em;
+        }
+        .reveal .role-card h3 { font-size: 1em; margin-bottom: 0.3em; margin-top: 0; }
+        .reveal .role-card p { margin: 0; color: #666; font-size: 0.9em; }
+
+        .reveal .tag {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent-dark);
+            padding: 0.15em 0.6em;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+
+        .reveal .workflow-arrow {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin: 0 0.3em;
+        }
+
+        .reveal .glossary-table {
+            font-size: 0.75em;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .reveal .glossary-table td {
+            padding: 0.5em 0.8em;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .reveal .glossary-table td:first-child {
+            font-weight: 600;
+            color: var(--primary-color);
+            white-space: nowrap;
+            width: 140px;
+        }
+
+        .reveal .small { font-size: 0.75em; color: #888; }
+
+        .reveal .numbered-flow {
+            counter-reset: flow-step;
+            padding-left: 0;
+        }
+        .reveal .numbered-flow li {
+            padding-left: 2.2em;
+            counter-increment: flow-step;
+        }
+        .reveal .numbered-flow li:before {
+            content: counter(flow-step);
+            background: var(--accent-color);
+            color: white;
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+            top: 0.15em;
+        }
+
+        .reveal section[data-background-color] { color: white; }
+        .reveal section[data-background-color] h1,
+        .reveal section[data-background-color] h2,
+        .reveal section[data-background-color] h3 { color: white; }
+        .reveal section[data-background-color] .subtitle { color: var(--accent-light); }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Title -->
+            <section class="title-slide" data-background-color="#272426">
+                <img src="./justuju-logo.png" alt="Justuju Logo"
+                     style="max-width: 220px; margin-bottom: 1.5em;">
+                <h1>How We Organize Work</h1>
+                <p class="subtitle">A guide for everyone at Justuju</p>
+            </section>
+
+            <!-- Big Picture -->
+            <section>
+                <h2>The Big Picture</h2>
+                <p>At Justuju, work starts with a <strong>purpose</strong> and ends with <strong>execution</strong>.</p>
+                <div class="highlight-box" style="margin-top: 1em;">
+                    <p>A group of people decide <em>why</em> something needs to happen.</p>
+                    <p>Then the people with the right <em>skills</em> make it happen.</p>
+                    <p style="margin-bottom:0">These are two different things — and our system keeps them separate on purpose.</p>
+                </div>
+            </section>
+
+            <!-- Three Concepts Overview -->
+            <section>
+                <h2>Three Core Concepts</h2>
+                <div class="three-column">
+                    <div class="concept-card">
+                        <h3>Branches</h3>
+                        <p><em>Why</em> does this work exist?</p>
+                        <p class="small">Strategic streams representing collective priorities</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Functions</h3>
+                        <p><em>How</em> does the work get done?</p>
+                        <p class="small">Teams of people with shared skills who execute work</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Initiatives</h3>
+                        <p><em>What</em> specifically are we doing?</p>
+                        <p class="small">Concrete projects bridging purpose and execution</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Branches -->
+            <section data-background-color="#272426">
+                <h2>Branches</h2>
+                <p class="subtitle">Why does this work exist?</p>
+            </section>
+
+            <section>
+                <h2>Our Branches</h2>
+                <p style="margin-bottom: 0.8em;">A branch is a strategic stream. It represents something Justuju has collectively decided matters.</p>
+                <ul style="font-size: 0.85em;">
+                    <li><strong>Team Bonding</strong> — strengthening relationships and shared experiences</li>
+                    <li><strong>Collective Work</strong> — running the organization day-to-day</li>
+                    <li><strong>Networking, Outreach and Revenue Generation</strong> — connecting with the world and sustaining ourselves</li>
+                    <li><strong>Perspective Building</strong> — deepening our understanding of justice, equity, and leadership</li>
+                    <li><strong>Systems and Policy Strengthening</strong> — building organizational structures that work</li>
+                    <li><strong>Learning and Capacity Building</strong> — growing our individual and collective skills</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>What Branches Do</h2>
+                <div class="highlight-box">
+                    <p>Branches do not execute work directly. They <em>initiate</em> work.</p>
+                    <p style="margin-bottom:0">A branch says: <strong>"This matters. Let's make it happen."</strong></p>
+                </div>
+                <p style="margin-top: 1em;">Each branch has an <strong>anchor</strong> — a person (rotated every 3 months) who ensures the branch's work stays visible and on track.</p>
+                <p>The anchor is not a manager. They are a <em>facilitator</em> and <em>accountability point</em>.</p>
+            </section>
+
+            <!-- Functions -->
+            <section data-background-color="#272426">
+                <h2>Functions</h2>
+                <p class="subtitle">How does the work get done?</p>
+            </section>
+
+            <section>
+                <h2>Our Functions</h2>
+                <p style="margin-bottom: 0.8em;">A function is a team of people with shared skills. This is where day-to-day planning and execution happens.</p>
+                <div class="two-column" style="font-size: 0.8em;">
+                    <div>
+                        <ul>
+                            <li><strong>Administration</strong> — Swari, SC</li>
+                            <li><strong>Finance</strong> — Swari, Anup, SC</li>
+                            <li><strong>Facilitation</strong> — Amit, Prateek, Deepa, Anup, Mahima</li>
+                            <li><strong>Governance</strong> — SC, AC</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Content Building</strong> — Deepa, Anup, Prateek, Amit</li>
+                            <li><strong>Software Engineering</strong> — Mahima, Rajitha, Surya, Shanti, Pooja, Rani, Prateek, Amit, Anup</li>
+                            <li><strong>Outreach and Marketing</strong> — Anup, Deepa, Prateek, Mahima</li>
+                            <li><strong>Learning</strong> — Shanti, Pooja, Rani, Swari, Mahima, Rajitha, Surya, Prateek, Amit</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="small" style="margin-top: 0.5em;">People belong to multiple functions. That is normal and expected.</p>
+            </section>
+
+            <section>
+                <h2>What Functions Own</h2>
+                <div class="three-column" style="font-size: 0.85em;">
+                    <div class="concept-card">
+                        <h3>Backlog</h3>
+                        <p>A list of all tasks waiting to be planned and done</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Sprint Rhythm</h3>
+                        <p>A regular planning cycle — weekly, fortnightly, or monthly</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Workflow</h3>
+                        <p>The stages a task moves through, reflecting how the team works</p>
+                    </div>
+                </div>
+                <div style="margin-top: 1em; font-size: 0.8em;">
+                    <p><strong>Example workflows:</strong></p>
+                    <p>Software Engineering: New <span class="workflow-arrow">&rarr;</span> In Progress <span class="workflow-arrow">&rarr;</span> In Review <span class="workflow-arrow">&rarr;</span> Done</p>
+                    <p>Finance: New <span class="workflow-arrow">&rarr;</span> In Progress <span class="workflow-arrow">&rarr;</span> Approved <span class="workflow-arrow">&rarr;</span> Done</p>
+                </div>
+            </section>
+
+            <!-- Initiatives -->
+            <section data-background-color="#272426">
+                <h2>Initiatives</h2>
+                <p class="subtitle">What specifically are we doing?</p>
+            </section>
+
+            <section>
+                <h2>What is an Initiative?</h2>
+                <p>An initiative is a concrete project or program. It is the <strong>bridge</strong> between a branch's purpose and a function's execution.</p>
+                <div style="font-size: 0.85em; margin-top: 1em;">
+                    <ul>
+                        <li><strong>CCL App</strong> — initiated by <span class="tag">Networking, Outreach and Revenue Generation</span></li>
+                        <li><strong>Anti-oppressive perspectives</strong> — initiated by <span class="tag">Perspective Building</span></li>
+                        <li><strong>Stewardship Council Strengthening</strong> — initiated by <span class="tag">Systems and Policy Strengthening</span></li>
+                        <li><strong>Problem Solving Capacity (Math and DSA)</strong> — initiated by <span class="tag">Learning and Capacity Building</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>An Initiative Spans Functions</h2>
+                <p>An initiative is always <em>owned by a branch</em> but <strong>executed by one or more functions</strong>.</p>
+                <div class="highlight-box" style="margin-top: 0.8em; font-size: 0.9em;">
+                    <p><strong>Example: CCL App</strong></p>
+                    <ul>
+                        <li><strong>Software Engineering</strong> builds the application</li>
+                        <li><strong>Finance</strong> handles billing and payments</li>
+                        <li><strong>Administration</strong> manages vendor contracts</li>
+                    </ul>
+                    <p style="margin-bottom:0">Each function picks up their part. Tasks live in each function's backlog, planned in each function's sprint, following each function's workflow.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Initiative Ownership</h2>
+                <p>The initiative itself has an <strong>owner</strong> (or a small committee) who tracks overall progress across all functions.</p>
+                <div class="two-column" style="margin-top: 1em; font-size: 0.85em;">
+                    <div class="concept-card">
+                        <h3>Branch Anchor</h3>
+                        <p>Asks: "Is this initiative meeting its <em>purpose</em>?"</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Initiative Owner</h3>
+                        <p>Asks: "Is the work across all functions <em>on track</em>?"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Connects -->
+            <section data-background-color="#272426">
+                <h2>How It All Connects</h2>
+                <p class="subtitle">The complete picture</p>
+            </section>
+
+            <section>
+                <h2>The Flow</h2>
+                <div class="flow-diagram">
+                    <span class="label">Branch (why)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="label">Initiative (what)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="label">Functions (how)</span><br><br>
+                    <span class="branch">Team Bonding</span> <span class="arrow">───────────────</span> <span class="initiative">Team Bonding activities</span> <span class="arrow">───</span> <span class="function">Facilitation</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="function">Administration</span><br><br>
+                    <span class="branch">Networking, Outreach</span> <span class="arrow">──────</span> <span class="initiative">CCL App</span> <span class="arrow">────────────────────</span> <span class="function">Software Engineering</span><br>
+                    <span class="branch">and Revenue Generation</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="function">Finance</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="function">Administration</span><br><br>
+                    <span class="branch">Perspective Building</span> <span class="arrow">───────</span> <span class="initiative">Anti-oppressive perspectives</span> <span class="arrow">─</span> <span class="function">Facilitation</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="function">Content Building</span><br><br>
+                    <span class="branch">Systems and Policy</span> <span class="arrow">────────</span> <span class="initiative">SC Strengthening</span> <span class="arrow">────────────</span> <span class="function">Governance</span><br>
+                    <span class="branch">Strengthening</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="function">Facilitation</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>The Flow — Step by Step</h2>
+                <ul class="numbered-flow">
+                    <li>A <strong>branch</strong> identifies a need</li>
+                    <li>An <strong>initiative</strong> is created to address that need</li>
+                    <li><strong>Tasks</strong> are created in the relevant function backlogs</li>
+                    <li>Each function <strong>plans and executes</strong> the tasks in their own rhythm</li>
+                    <li>The <strong>initiative owner</strong> tracks progress across all functions</li>
+                    <li>The <strong>branch anchor</strong> reviews whether the initiative is meeting its purpose</li>
+                </ul>
+            </section>
+
+            <!-- Sustaining Work -->
+            <section>
+                <h2>What About Internal Work?</h2>
+                <p>Sometimes a function has work that doesn't come from any branch.</p>
+                <div class="highlight-box" style="font-size: 0.9em;">
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li>Software Engineering refactoring a codebase</li>
+                        <li>Administration setting up a new filing system</li>
+                        <li>Building shared infrastructure across projects</li>
+                    </ul>
+                </div>
+                <p>This is normal. We call this <strong>sustaining work</strong>. It lives in the function's backlog like any other task. It is simply not linked to any initiative.</p>
+            </section>
+
+            <!-- Roles -->
+            <section data-background-color="#272426">
+                <h2>Roles</h2>
+                <p class="subtitle">Accountability without hierarchy</p>
+            </section>
+
+            <section>
+                <h2>Four Roles</h2>
+                <p class="small" style="margin-bottom: 1em;">These are not hierarchical positions. They are accountability roles that help the collective stay organized.</p>
+                <div class="role-grid">
+                    <div class="role-card">
+                        <h3>Branch Anchor</h3>
+                        <p>Ensures the branch's initiatives stay visible and on track. Convenes reviews. Surfaces blockers.</p>
+                        <p><span class="tag">3-month rotation</span></p>
+                    </div>
+                    <div class="role-card">
+                        <h3>Initiative Owner</h3>
+                        <p>Tracks a specific initiative across all functions involved. Updates overall status.</p>
+                        <p><span class="tag">Duration of initiative</span></p>
+                    </div>
+                    <div class="role-card">
+                        <h3>Function Member</h3>
+                        <p>Plans and executes tasks in their function's backlog. Participates in sprint planning.</p>
+                        <p><span class="tag">Ongoing</span></p>
+                    </div>
+                    <div class="role-card">
+                        <h3>Assignee</h3>
+                        <p>The person doing a specific task.</p>
+                        <p><span class="tag">Per task</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Planning Rhythm -->
+            <section data-background-color="#272426">
+                <h2>Planning Rhythm</h2>
+                <p class="subtitle">How we stay in sync</p>
+            </section>
+
+            <section>
+                <h2>Planning Rhythm</h2>
+                <p class="small" style="margin-bottom: 0.8em;">The cadence depends on each function's sprint duration — weekly, fortnightly, or monthly.</p>
+                <div class="concept-card" style="margin-bottom: 0.8em;">
+                    <h3>Sprint Start — Function Planning</h3>
+                    <p style="font-size: 0.85em;">Each function reviews their backlog: What needs doing? What's blocked? Who's working on what?</p>
+                    <p class="small">This is where execution is planned.</p>
+                </div>
+                <div class="concept-card" style="margin-bottom: 0.8em;">
+                    <h3>During the Sprint — Async Updates</h3>
+                    <p style="font-size: 0.85em;">Quick status updates in Mattermost: Done, In progress, Blocked.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>Monthly or Quarterly — Branch Review</h3>
+                    <p style="font-size: 0.85em;">Are our initiatives moving? Are we meeting our goals? What needs collective attention?</p>
+                    <p class="small">This is where purpose is checked against progress.</p>
+                </div>
+            </section>
+
+            <!-- Glossary -->
+            <section>
+                <h2>Glossary</h2>
+                <table class="glossary-table">
+                    <tr><td>Branch</td><td>A strategic stream representing a collective priority</td></tr>
+                    <tr><td>Function</td><td>A team of people with shared skills who execute work</td></tr>
+                    <tr><td>Initiative</td><td>A project or program initiated by a branch, executed by functions</td></tr>
+                    <tr><td>Backlog</td><td>The list of tasks waiting to be planned and done, owned by a function</td></tr>
+                    <tr><td>Sprint</td><td>A planning cycle during which a function plans and completes tasks</td></tr>
+                    <tr><td>Anchor</td><td>A rotating facilitator responsible for visibility and follow-through</td></tr>
+                    <tr><td>Workflow</td><td>The stages a task moves through (e.g., New &rarr; In Progress &rarr; Done)</td></tr>
+                    <tr><td>Sustaining work</td><td>Internal function work that doesn't originate from a branch</td></tr>
+                </table>
+            </section>
+
+            <!-- Closing -->
+            <section class="title-slide" data-background-color="#272426">
+                <img src="./justuju-logo.png" alt="Justuju Logo"
+                     style="max-width: 200px; margin-bottom: 1.5em;">
+                <h2>Let's Build This Together</h2>
+                <p class="subtitle" style="margin-top: 1em;">Questions, thoughts, concerns?</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            slideNumber: true,
+            controls: true,
+            progress: true,
+            center: false,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+        });
+    </script>
+</body>
+</html>
